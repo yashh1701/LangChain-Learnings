@@ -1,4 +1,5 @@
-from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+from langchain_huggingface import ChatHuggingFace
+from langchain_huggingface import HuggingFaceEndpoint  # create a llm instance from HuggingFace API endpoint and pass it to the ChatHuggingFace class
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -8,7 +9,7 @@ llm = HuggingFaceEndpoint(
     task="text-generation"
 )
 
-model = ChatHuggingFace(llm=llm)
+model = ChatHuggingFace(llm=llm)  # passing the llm instance to the ChatHuggingFace class
 
 result = model.invoke("What is the capital of India")
 
