@@ -1,4 +1,7 @@
 from langchain_huggingface import HuggingFaceEmbeddings
+import os
+
+os.getenv("HUGGINGFACEHUB_ACCESS_TOKEN")
 
 embedding = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
 
