@@ -11,7 +11,7 @@ documents = [
     "Virat Kohli is an Indian cricketer known for his aggressive batting and leadership.",
     "MS Dhoni is a former Indian captain famous for his calm demeanor and finishing skills.",
     "Sachin Tendulkar, also known as the 'God of Cricket', holds many batting records.",
-    "Rohit Sharma is known for his elegant batting and record-breaking double centuries.",
+    "Rohit Sharma world's top cricketer who known for his elegant batting and record-breaking double centuries.",
     "Jasprit Bumrah is an Indian fast bowler known for his unorthodox action and yorkers."
 ]
 
