@@ -1,7 +1,7 @@
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 import streamlit as st
-from langchain_core.prompts import PromptTemplate,load_prompt
+from langchain_core.prompts import PromptTemplate
 
 load_dotenv()
 model = ChatOpenAI()
@@ -14,7 +14,24 @@ style_input = st.selectbox( "Select Explanation Style", ["Beginner-Friendly", "T
 
 length_input = st.selectbox( "Select Explanation Length", ["Short (1-2 paragraphs)", "Medium (3-5 paragraphs)", "Long (detailed explanation)"] )
 
-template = load_prompt('template.json')
+template = PromptTemplate(
+    template="""
+You are an expert research assistant.
+
+Research Paper: {paper_input}
+
+Explanation Style: {style_input}
+
+Explanation Length: {length_input}
+
+Provide a clear explanation of the paper according to the selected style and length.
+""",
+    input_variables=[
+        "paper_input",
+        "style_input",
+        "length_input"
+    ]
+)
 
 
 
