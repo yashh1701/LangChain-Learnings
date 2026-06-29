@@ -8,7 +8,8 @@ load_dotenv()
 model = ChatOpenAI()
 
 # schema
-class Review(BaseModel):
+# below creates a Pydantic model called Review with five fields
+class Review(BaseModel): 
 
     key_themes: list[str] = Field(description="Write down all the key themes discussed in the review in a list")
     summary: str = Field(description="A brief summary of the review")
