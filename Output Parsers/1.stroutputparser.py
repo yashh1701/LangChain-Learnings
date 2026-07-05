@@ -23,6 +23,7 @@ template2 = PromptTemplate(
     input_variables=['text']
 )
 
+# manual way of chaining the prompts and models together using the invoke method
 prompt1 = template1.invoke({'topic':'black hole'})
 
 result = model.invoke(prompt1)
