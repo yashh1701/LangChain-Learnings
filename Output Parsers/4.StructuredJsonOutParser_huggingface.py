@@ -24,6 +24,7 @@ schema = [
 
 # creating a StructuredOutputParser using the defined schema. The parser will use this schema to parse the output of the model into a structured format.
 # from_response_schemas is a class method that creates a StructuredOutputParser instance from the defined schema.
+# The parser will use the schema to parse the output of the model into a structured format based on the defined fields and their descriptions.
 parser = StructuredOutputParser.from_response_schemas(schema)
 
 # creating a PromptTemplate that includes the format instructions from the parser. The format instructions will be included in the prompt so that the model knows to output in the specified format.
