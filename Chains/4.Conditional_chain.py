@@ -14,10 +14,12 @@ model = ChatOpenAI()
 
 parser = StrOutputParser()
 
+# Define a Pydantic model to represent the feedback sentiment
 class Feedback(BaseModel):
-
+    # Define the sentiment field with a description and a type of Literal to restrict the values to 'positive' or 'negative'
     sentiment: Literal['positive', 'negative'] = Field(description='Give the sentiment of the feedback')
 
+# Create a PydanticOutputParser using the defined Pydantic model class to parse the output of the model into a structured format
 parser2 = PydanticOutputParser(pydantic_object=Feedback)
 
 prompt1 = PromptTemplate(
@@ -26,6 +28,7 @@ prompt1 = PromptTemplate(
     partial_variables={'format_instruction':parser2.get_format_instructions()}
 )
 
+# Create a chain of the prompt template, model, and parser to get the final output. The chain will take the input variable 'feedback', pass it through the prompt template, then through the model, and finally through the parser to get the structured output.
 classifier_chain = prompt1 | model | parser2
 
 prompt2 = PromptTemplate(
@@ -38,12 +41,14 @@ prompt3 = PromptTemplate(
     input_variables=['feedback']
 )
 
+# Create a RunnableBranch to handle the branching logic based on the sentiment of the feedback. The branch will take the output of the classifier_chain and check the sentiment field. If the sentiment is 'positive', it will invoke prompt2 | model | parser, and if the sentiment is 'negative', it will invoke prompt3 | model | parser. If neither condition is met, it will return a default message.
 branch_chain = RunnableBranch(
     (lambda x:x.sentiment == 'positive', prompt2 | model | parser),
     (lambda x:x.sentiment == 'negative', prompt3 | model | parser),
     RunnableLambda(lambda x: "could not find sentiment")
 )
 
+# Create a chain of the classifier_chain and branch_chain to get the final output. The chain will first classify the sentiment of the feedback and then branch to the appropriate response based on the sentiment.
 chain = classifier_chain | branch_chain
 
 print(chain.invoke({'feedback': 'This is a beautiful phone'}))
