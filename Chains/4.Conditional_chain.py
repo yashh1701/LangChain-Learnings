@@ -31,6 +31,7 @@ prompt1 = PromptTemplate(
 # Create a chain of the prompt template, model, and parser to get the final output. The chain will take the input variable 'feedback', pass it through the prompt template, then through the model, and finally through the parser to get the structured output.
 classifier_chain = prompt1 | model | parser2
 
+# Create two PromptTemplates for generating responses to positive and negative feedback, respectively. Each template takes the feedback as input and instructs the model to generate an appropriate response.
 prompt2 = PromptTemplate(
     template='Write an appropriate response to this positive feedback \n {feedback}',
     input_variables=['feedback']
@@ -51,6 +52,7 @@ branch_chain = RunnableBranch(
 # Create a chain of the classifier_chain and branch_chain to get the final output. The chain will first classify the sentiment of the feedback and then branch to the appropriate response based on the sentiment.
 chain = classifier_chain | branch_chain
 
+# Invoke the chain with a sample feedback
 print(chain.invoke({'feedback': 'This is a beautiful phone'}))
 
 chain.get_graph().print_ascii()
