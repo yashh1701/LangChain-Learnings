@@ -37,6 +37,7 @@ prompt2 = PromptTemplate(
     input_variables=['feedback']
 )
 
+# Create a PromptTemplate for generating responses to negative feedback. The template takes the feedback as input and instructs the model to generate an appropriate response.
 prompt3 = PromptTemplate(
     template='Write an appropriate response to this negative feedback \n {feedback}',
     input_variables=['feedback']
