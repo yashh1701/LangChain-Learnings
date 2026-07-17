@@ -56,4 +56,5 @@ chain = classifier_chain | branch_chain
 # Invoke the chain with a sample feedback
 print(chain.invoke({'feedback': 'This is a beautiful phone'}))
 
+# print the graph of the chain to visualize the flow of data through the prompts, models, and parsers
 chain.get_graph().print_ascii()
