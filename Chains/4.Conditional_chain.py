@@ -12,6 +12,7 @@ load_dotenv()
 
 model = ChatOpenAI()
 
+# creating a parser to convert the output of the model into a string
 parser = StrOutputParser()
 
 # Define a Pydantic model to represent the feedback sentiment
