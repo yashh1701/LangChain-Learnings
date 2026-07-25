@@ -32,5 +32,6 @@ parallel_chain = RunnableParallel({
 # The final chain combines the joke generation and explanation into a single sequence
 final_chain = RunnableSequence(joke_gen_chain, parallel_chain)
 
-# Invoke the final chain with a topic
+# Invoke the final chain with a topic 
+# The final chain will first generate a joke about the given topic and then explain that joke. The output will include both the joke and its explanation.
 print(final_chain.invoke({'topic':'cricket'}))
