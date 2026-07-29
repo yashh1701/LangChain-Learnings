@@ -34,6 +34,7 @@ branch_chain = RunnableBranch(
 # The final chain combines the report generation and the conditional branching into a single sequence. It first generates the report and then decides whether to summarize it or not based on its length.
 final_chain = RunnableSequence(report_gen_chain, branch_chain)
 
+# Invoke the final chain with a topic. The final chain will first generate a detailed report on the given topic and then check its length. If the report exceeds 300 words, it will summarize it; otherwise, it will return the report as is.
 print(final_chain.invoke({'topic':'Russia vs Ukraine'}))
 
 
