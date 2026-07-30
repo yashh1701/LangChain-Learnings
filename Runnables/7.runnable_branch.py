@@ -18,8 +18,10 @@ prompt2 = PromptTemplate(
     input_variables=['text']
 )
 
+# The ChatOpenAI model is used to generate text based on the provided prompts.
 model = ChatOpenAI()
 
+# The output parser is used to parse the output of the model into a string format.
 parser = StrOutputParser()
 
 # The report generation chain generates a detailed report based on the provided topic.
