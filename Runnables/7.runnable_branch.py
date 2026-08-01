@@ -11,7 +11,7 @@ prompt1 = PromptTemplate(
     template='Write a detailed report on {topic}',
     input_variables=['topic']
 )
-
+ 
 # This prompt is used to summarize the report if it exceeds 300 words.
 prompt2 = PromptTemplate(
     template='Summarize the following text \n {text}',
@@ -33,10 +33,10 @@ branch_chain = RunnableBranch(
     RunnablePassthrough()
 )
 
-# The final chain combines the report generation and the conditional branching into a single sequence. It first generates the report and then decides whether to summarize it or not based on its length.
+# The final chain     combines the report generation and the conditional branching into a single sequence. It first generates the report and then decides whether to summarize it or not based on its length.
 final_chain = RunnableSequence(report_gen_chain, branch_chain)
 
 # Invoke the final chain with a topic. The final chain will first generate a detailed report on the given topic and then check its length. If the report exceeds 300 words, it will summarize it; otherwise, it will return the report as is.
-print(final_chain.invoke({'topic':'Russia vs Ukraine'}))
+print(final_chain.invoke({'topic':'Recent Students Protest in India against NEET exam'}))
 
 
