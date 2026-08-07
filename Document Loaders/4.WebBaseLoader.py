@@ -8,6 +8,7 @@ load_dotenv()
 
 model = ChatOpenAI()
 
+# create a prompt template to ask a question about the text
 prompt = PromptTemplate(
     template='Answer the following question \n {question} from the following text - \n {text}',
     input_variables=['question','text']
